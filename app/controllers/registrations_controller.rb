@@ -12,6 +12,7 @@ class RegistrationsController < ApplicationController
     # This should be done under private section below to make it secure
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id # This will look into main_controller.rb for the user
       redirect_to root_path, notice: "Successfully created account"
     else
       render :new
